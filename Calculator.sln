@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D5E4B638-9E33-49AA-B584-F3E65DED4A1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "src\Calculator\Calculator.csproj", "{8FDA070A-F902-49D5-81A3-31934FE37DD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tokenizer", "src\Tokenizer\Tokenizer.csproj", "{4E8A8179-36A8-449B-AACD-F33E7B1A1118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{8C1F699F-2561-4F58-9924-2CD3C1F3D401}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FDA070A-F902-49D5-81A3-31934FE37DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FDA070A-F902-49D5-81A3-31934FE37DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FDA070A-F902-49D5-81A3-31934FE37DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FDA070A-F902-49D5-81A3-31934FE37DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8A8179-36A8-449B-AACD-F33E7B1A1118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8A8179-36A8-449B-AACD-F33E7B1A1118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8A8179-36A8-449B-AACD-F33E7B1A1118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8A8179-36A8-449B-AACD-F33E7B1A1118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C1F699F-2561-4F58-9924-2CD3C1F3D401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C1F699F-2561-4F58-9924-2CD3C1F3D401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C1F699F-2561-4F58-9924-2CD3C1F3D401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C1F699F-2561-4F58-9924-2CD3C1F3D401}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8FDA070A-F902-49D5-81A3-31934FE37DD5} = {D5E4B638-9E33-49AA-B584-F3E65DED4A1B}
+		{4E8A8179-36A8-449B-AACD-F33E7B1A1118} = {D5E4B638-9E33-49AA-B584-F3E65DED4A1B}
+	EndGlobalSection
+EndGlobal

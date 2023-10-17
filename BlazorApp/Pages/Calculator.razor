@@ -1,0 +1,155 @@
+@page "/calculator"
+
+<PageTitle>Calculator</PageTitle>
+
+<h1>Calculator</h1>
+
+<div class="container text-center py-2"
+    style="width: 400px; background-image: linear-gradient(to right, #00b4db, #0083b0);">
+    <div class="row row-cols-4 g-1">
+        <div class="col-12">
+            <input type="text" class="w-100" style="text-align:right;" @bind="calc.Output" disabled>
+        </div>
+
+        <div class="col-12 flex-grow-1">
+            <input type="text" class="w-100 h-100" style="text-align:right;" @bind="calc.Input" @bind:event="oninput">
+        </div>
+
+        <div class="col-6 rows-2">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.Clear()">C</div>
+        </div>
+        <div class="col-3">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.Backspace()">&blacktriangleleft;</div>
+        </div>
+        <div class="col-3">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('/')">&divide;</div>
+        </div>
+
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('7')">7</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('8')">8</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('9')">9</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('*')">&times;</div>
+        </div>
+
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('4')">4</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('5')">5</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('6')">6</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('-')">-</div>
+        </div>
+
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('1')">1</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('2')">2</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('3')">3</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('+')">+</div>
+        </div>
+
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('(')">&lpar;</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed('0')">0</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.InputPressed(')')">&rpar;</div>
+        </div>
+        <div class="col">
+            <div type="div" class="btn btn-secondary w-100" @onclick="() => calc.Enter()">=</div>
+        </div>
+    </div>
+</div>
+
+<input type="text" class="container" @bind="calc.JSON" disabled>
+
+@code {
+    private CalculatorEncapsulation calc = new();
+    public class CalculatorEncapsulation
+    {
+        private Tokenizer.Tokenizer tokenizer = new();
+        private string input;
+        public string Output;
+        public string JSON;
+
+        public string Input
+        {
+            get { return this.input; }
+            set
+            {
+                input = value;
+                Update();
+            }
+        }
+
+        public CalculatorEncapsulation()
+        {
+            input = "";
+            Output = "";
+            JSON = "";
+        }
+
+        public void Enter()
+        {
+            input = Output;
+            Output = "";
+            Update();
+        }
+
+        public void Update()
+        {
+            tokenizer.Input = input;
+
+            try
+            {
+                var result = tokenizer.Tokenize();
+                Output = result.Eval().ToString();
+                JSON = result.ToJSON();
+            }
+            catch (Exception ex) when (ex is InvalidDataException || ex is DivideByZeroException)
+            {
+                Output = "";
+                JSON = "";
+            }
+        }
+
+        public void InputPressed(char c)
+        {
+            Input += c;
+            Update();
+        }
+
+        public void Backspace()
+        {
+            if (input.Length > 0)
+            {
+                input = input[..^1];
+                Update();
+            }
+        }
+
+        public void Clear()
+        {
+            input = "";
+            Update();
+        }
+    }
+}
